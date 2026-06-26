@@ -2,7 +2,7 @@ package com.Rush.Ecom.service;
 
 
 import com.Rush.Ecom.model.Product;
-import com.Rush.Ecom.repo.repository;
+import com.Rush.Ecom.repo.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class ProductService {
     @Autowired
-    private repository repo;
+    private ProductRepo repo;
     public List<Product> getAllProducts(){
         return repo.findAll();
 
@@ -44,4 +44,9 @@ public class ProductService {
     }
 
 
+    public List<Product> searchProducts(String keyword) {
+
+        String searchKeyword = "%" + keyword + "%";
+        return repo.searchProducts(searchKeyword);
+    }
 }
